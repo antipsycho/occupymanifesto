@@ -74,7 +74,8 @@ for item in subreddit.get_hot(limit=None):
 		'parent': parent,
 
 		'points': item.score,
-		'title': item.title.encode('utf-8')
+		'title': item.title.encode('utf-8'),
+		'text': item.selftext.encode('utf-8')
 	}
 	nodes.append(node)
 
