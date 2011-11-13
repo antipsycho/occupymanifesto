@@ -62,6 +62,7 @@ for item in subreddit.get_hot(limit=None):
 
 	# Build up this item's path
 	path = (parent_path or '') + '/' + item.id
+	depth = (parent_path or '').count('/')
 	logging.info('Constructed path %s for {%s}' % (path, item))
 
 	# Prepare a document to be loaded into Solr
@@ -71,6 +72,7 @@ for item in subreddit.get_hot(limit=None):
 		'id': item.id,
 		'type': type,
 		'path': path,
+		'depth': depth,
 		'parent': parent,
 
 		'points': item.score,

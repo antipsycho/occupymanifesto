@@ -58,14 +58,14 @@
 
  </types>
 
-
  <fields>
 
    <field name="datetime" type="date" indexed="true" stored="true" required="true" /> 
 
    <field name="id" type="string" indexed="true" stored="true" required="true" /> 
    <field name="type" type="string" indexed="true" stored="true" required="true" /> 
-   <field name="path" type="path" indexed="true" stored="true" required="true" /> 
+   <field name="path" type="path" indexed="true" required="true" /> 
+   <field name="depth" type="tint" indexed="true" required="true" /> 
    <field name="parent" type="string" stored="true" /> 
 
    <field name="points" type="int" stored="true" /> 
