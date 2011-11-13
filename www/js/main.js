@@ -3,22 +3,22 @@
   $(document).ready(function() {
 
     var Manager = new AjaxSolr.Manager();
-    Manager.addWidget(new AjaxSolr.ArborWidget({
+    Manager.addWidget(new AjaxSolr.GraphWidget({
         'id': 'graph',
-        'target': '#viewport'
+        'target': 'viewport'
     }));
 
     Manager.init();
     Manager.store.addByValue('q', '*:*');
 
     var params = {
-      facet: true,
-      'facet.field': [ 'path' ],
-      'facet.limit': 5,
-      'facet.mincount': 1
+        facet: true,
+        'facet.field': [ 'path' ],
+        'facet.limit': 5,
+        'facet.mincount': 1
     };
     for (var name in params) {
-      Manager.store.addByValue(name, params[name]);
+        Manager.store.addByValue(name, params[name]);
     }
 
     Manager.doRequest();
