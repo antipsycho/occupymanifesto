@@ -43,13 +43,17 @@ for item in subreddit.get_hot(limit=None):
 
 		# Extract the parent item ID
 		parent_url = matches.group(1).strip()
-		matches = re.match('(http.?://.*)(/r/)(.*)(/comments/)(.*)(/.*/)', parent_url)
+		matches_long = re.match('(http.?://.*reddit.com)(/r/)(.*)(/comments/)(.*)(/.*/)', parent_url)
+		matches_short = re.match('(http.?://.*redd.it)(/)(.*)', parent_url)
 
-		if not matches:
+		if matches_long:
+			parent = matches_long.group(5)
+		elif matches_short:
+			parent = matches_short.group(3)
+		else:
 			continue
 
 		# Extract the parent document's full path
-		parent = matches.group(5)
 		parent_path = None
 		response = solr.query('id:%s' % parent)
 		if response.results and response.results[0].has_key('path'):
