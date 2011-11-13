@@ -20,6 +20,12 @@
     <fieldType name="date" class="solr.TrieDateField" omitNorms="true" precisionStep="0" positionIncrementGap="0"/>
     <fieldType name="tdate" class="solr.TrieDateField" omitNorms="true" precisionStep="6" positionIncrementGap="0"/>
 
+    <fieldType name="path" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.PathHierarchyTokenizerFactory" delimiter="/" />
+      </analyzer>
+    </fieldType>
+
     <fieldType name="text" class="solr.TextField" positionIncrementGap="100" autoGeneratePhraseQueries="true">
       <analyzer type="index">
         <tokenizer class="solr.WhitespaceTokenizerFactory"/>
@@ -55,16 +61,16 @@
 
  <fields>
 
+   <field name="datetime" type="date" indexed="true" stored="true" required="true" /> 
+
    <field name="id" type="string" indexed="true" stored="true" required="true" /> 
    <field name="type" type="string" indexed="true" stored="true" required="true" /> 
-   <field name="datetime" type="date" indexed="true" stored="true" required="true" /> 
-   <field name="points" type="int" stored="true" required="true" /> 
-
-   <field name="title" type="string" stored="true" /> 
-   <field name="text" type="text" stored="true" /> 
+   <field name="path" type="path" indexed="true" stored="true" required="true" /> 
    <field name="parent" type="string" stored="true" /> 
 
-   <field name="links" type="string" indexed="true" stored="true" multiValued="true"/>
+   <field name="points" type="int" stored="true" /> 
+   <field name="title" type="string" stored="true" /> 
+   <field name="text" type="text" stored="true" /> 
 
  </fields>
 
